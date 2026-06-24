@@ -1,0 +1,19 @@
+# Data lake local — gerado pelo pipeline, não versionar.
+data/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Spark / Ivy
+spark-warehouse/
+metastore_db/
+derby.log
+.ivy2/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store

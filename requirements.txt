@@ -1,0 +1,5 @@
+# Versões pinadas para reprodutibilidade.
+# delta-spark 3.2.x é compatível com Spark/PySpark 3.5.x.
+pyspark==3.5.3
+delta-spark==3.2.1
+requests==2.32.3

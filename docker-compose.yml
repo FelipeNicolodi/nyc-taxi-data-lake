@@ -1,0 +1,18 @@
+# Sobe o pipeline num ambiente isolado.
+# Uso:
+#   docker compose run --rm pipeline                       # roda a ingestão (padrão)
+#   docker compose run --rm pipeline python -m src.ingestion
+#
+# O volume ./data guarda o data lake (landing/bronze/silver/gold) no host, então as
+# camadas Delta continuam lá entre execuções e dá pra inspecionar.
+services:
+  pipeline:
+    build: .
+    image: nyc-taxi-pipeline
+    volumes:
+      - ./data:/app/data
+    environment:
+      - DATA_ROOT=/app/data
+      # Memória do driver Spark. No modo local o driver faz todo o trabalho, e o
+      # padrão (~1g) não aguenta o shuffle/dedup sobre ~16M linhas. O spark-submit lê isto.
+      - SPARK_DRIVER_MEMORY=4g
