@@ -22,6 +22,8 @@ RUN python -c "from delta import configure_spark_with_delta_pip; from pyspark.sq
     configure_spark_with_delta_pip(SparkSession.builder).getOrCreate().stop()"
 
 COPY src/ ./src/
+COPY analysis/ ./analysis/
+COPY main.py ./main.py
 
 # Usuário não-root.
 RUN useradd --create-home --uid 1000 appuser \
